@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QuizEng - English Quiz Game</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;900&family=Righteous&display=swap" rel="stylesheet">
+    <script>
+    tailwind.config = {
+        theme: {
+            extend: {
+                fontFamily: {
+                    display: ['Righteous', 'cursive'],
+                    body: ['Poppins', 'sans-serif'],
+                }
+            }
+        }
+    }
+    </script>
+</head>
+<body>
+    <!-- Blob Latar -->
+    <div class="bg-blob blob-1"></div>
+    <div class="bg-blob blob-2"></div>
+    <div class="bg-blob blob-3"></div>
+
+    <!-- Toast -->
+    <div id="toast" class="toast"></div>
+
+    <!-- ===================== LANDING PAGE ===================== -->
+    <div id="landing-page" class="page active">
+        <div class="flex-1 flex flex-col items-center justify-center px-6 relative z-10">
+            <!-- Partikel Container -->
+            <div id="particles-container" class="absolute inset-0 overflow-hidden pointer-events-none"></div>
+
+            <!-- Logo & Judul -->
+            <div class="text-center mb-12">
+                <div class="inline-flex items-center justify-center w-20 h-20 rounded-2xl mb-6" style="background:var(--accent-dim); border:1px solid rgba(0,230,138,0.25);">
+                    <i class="fa-solid fa-language text-3xl" style="color:var(--accent)"></i>
+                </div>
+                <h1 class="font-display text-5xl md:text-6xl tracking-wide mb-3" style="color:var(--accent);">Guess the Word</h1>
+                <p class="text-lg font-light" style="color:var(--muted);">Enjoy the fun of guessing words in English!</p>
+                <p class="text-sm mt-2" style="color:var(--muted); opacity:0.6;">Asah kemampuan bahasa Inggrismu!</p>
+            </div>
+
+            <!-- Tombol Play -->
+            <button onclick="navigateTo('level-page')" class="play-btn w-28 h-28 rounded-full flex items-center justify-center mb-16" style="background: linear-gradient(135deg, var(--accent), #00cc7a);" aria-label="Mulai Game">
+                <i class="fa-solid fa-play text-4xl ml-1" style="color:var(--bg);"></i>
+            </button>
+
+            <!-- Navigasi Bawah -->
+            <div class="flex items-center gap-8">
+                <button onclick="navigateTo('home-page')" class="flex flex-col items-center gap-2 group" aria-label="Beranda">
+                    <div class="w-14 h-14 rounded-xl flex items-center justify-center transition-all group-hover:scale-110" style="background:var(--card); border:1px solid var(--border);">
+                        <i class="fa-solid fa-house text-lg" style="color:var(--warm);"></i>
+                    </div>
+                    <span class="text-xs font-semibold" style="color:var(--muted);">Beranda</span>
+                </button>
+                <button onclick="navigateTo('level-page')" class="flex flex-col items-center gap-2 group" aria-label="Level">
+                    <div class="w-14 h-14 rounded-xl flex items-center justify-center transition-all group-hover:scale-110" style="background:var(--card); border:1px solid var(--border);">
+                        <i class="fa-solid fa-layer-group text-lg" style="color:var(--accent);"></i>
+                    </div>
+                    <span class="text-xs font-semibold" style="color:var(--muted);">Level</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===================== HOME PAGE ===================== -->
+    <div id="home-page" class="page">
+        <div class="flex-1 flex flex-col px-6 py-8 relative z-10 max-w-lg mx-auto w-full">
+            <!-- Header -->
+            <div class="flex items-center gap-4 mb-10">
+                <button onclick="navigateTo('landing-page')" class="w-11 h-11 rounded-xl flex items-center justify-center transition-all hover:scale-105" style="background:var(--card); border:1px solid var(--border);" aria-label="Kembali">
+                    <i class="fa-solid fa-arrow-left text-sm" style="color:var(--text);"></i>
+                </button>
+                <h2 class="font-display text-2xl" style="color:var(--accent);">Tentang Aplikasi</h2>
+            </div>
+
+            <!-- Konten -->
+            <div class="rounded-2xl p-6 mb-6" style="background:var(--card); border:1px solid var(--border);">
+                <div class="flex items-center gap-3 mb-4">
+                    <div class="w-12 h-12 rounded-xl flex items-center justify-center" style="background:var(--accent-dim);">
+                        <i class="fa-solid fa-language text-xl" style="color:var(--accent);"></i>
+                    </div>
+                    <h3 class="font-bold text-xl">Guess the Word</h3>
+                </div>
+                <p class="text-sm leading-relaxed" style="color:var(--muted);">
+                    Guess the Word adalah aplikasi permainan kuis interaktif yang dirancang untuk membantu kamu mempelajari dan mengasah kemampuan bahasa Inggris dengan cara yang menyenangkan. Melalui 10 level dengan tingkat kesulitan yang meningkat, kamu akan diuji pada berbagai topik mulai dari kosakata dasar, grammar, hingga idiom dan kosakata lanjutan.
+                </p>
+            </div>
+
+            <!-- Fitur -->
+            <div class="space-y-4">
+                <h3 class="font-bold text-lg mb-2" style="color:var(--warm);">Fitur Utama</h3>
+                <div class="rounded-xl p-4 flex items-start gap-4" style="background:var(--card); border:1px solid var(--border);">
+                    <div class="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0" style="background:var(--accent-dim);">
+                        <i class="fa-solid fa-clock text-sm" style="color:var(--accent);"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold text-sm mb-1">Timer 10 Detik</h4>
+                        <p class="text-xs" style="color:var(--muted);">Setiap soal memiliki batas waktu 10 detik untuk menjawab.</p>
+                    </div>
+                </div>
+                <div class="rounded-xl p-4 flex items-start gap-4" style="background:var(--card); border:1px solid var(--border);">
+                    <div class="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0" style="background:var(--warm-dim);">
+                        <i class="fa-solid fa-layer-group text-sm" style="color:var(--warm);"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold text-sm mb-1">10 Level Progressif</h4>
+                        <p class="text-xs" style="color:var(--muted);">Dari kosakata dasar hingga idiom dan kata lanjutan.</p>
+                    </div>
+                </div>
+                <div class="rounded-xl p-4 flex items-start gap-4" style="background:var(--card); border:1px solid var(--border);">
+                    <div class="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0" style="background:var(--accent-dim);">
+                        <i class="fa-solid fa-check-circle text-sm" style="color:var(--accent);"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold text-sm mb-1">Feedback Langsung</h4>
+                        <p class="text-xs" style="color:var(--muted);">Jawaban benar berwarna hijau, salah berwarna merah secara instan.</p>
+                    </div>
+                </div>
+                <div class="rounded-xl p-4 flex items-start gap-4" style="background:var(--card); border:1px solid var(--border);">
+                    <div class="w-10 h-10 rounded-lg flex items-center justify-center flex-shrink-0" style="background:var(--warm-dim);">
+                        <i class="fa-solid fa-trophy text-sm" style="color:var(--warm);"></i>
+                    </div>
+                    <div>
+                        <h4 class="font-semibold text-sm mb-1">Lacak Progress</h4>
+                        <p class="text-xs" style="color:var(--muted);">Lihat skor dan hasil jawaban di setiap level yang telah diselesaikan.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===================== LEVEL PAGE ===================== -->
+    <div id="level-page" class="page">
+        <div class="flex-1 flex flex-col px-6 py-8 relative z-10 max-w-lg mx-auto w-full">
+            <!-- Header -->
+            <div class="flex items-center gap-4 mb-8">
+                <button onclick="navigateTo('landing-page')" class="w-11 h-11 rounded-xl flex items-center justify-center transition-all hover:scale-105" style="background:var(--card); border:1px solid var(--border);" aria-label="Kembali">
+                    <i class="fa-solid fa-arrow-left text-sm" style="color:var(--text);"></i>
+                </button>
+                <h2 class="font-display text-2xl" style="color:var(--accent);">Pilih Level</h2>
+            </div>
+
+            <!-- Grid Level -->
+            <div id="level-grid" class="level-grid grid grid-cols-2 gap-4">
+                <!-- Diisi oleh JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <!-- ===================== QUIZ PAGE ===================== -->
+    <div id="quiz-page" class="page">
+        <div class="flex-1 flex flex-col px-6 py-8 relative z-10 max-w-lg mx-auto w-full">
+            <!-- Header Quiz -->
+            <div class="flex items-center justify-between mb-6">
+                <button onclick="confirmExit()" class="w-11 h-11 rounded-xl flex items-center justify-center transition-all hover:scale-105" style="background:var(--card); border:1px solid var(--border);" aria-label="Keluar">
+                    <i class="fa-solid fa-xmark text-sm" style="color:var(--text);"></i>
+                </button>
+                <div class="text-center">
+                    <p class="text-xs font-semibold" style="color:var(--accent);" id="quiz-level-label">Level 1</p>
+                    <p class="text-xs" style="color:var(--muted);" id="quiz-level-name">Kosakata Dasar</p>
+                </div>
+                <div class="w-11 h-11 rounded-xl flex items-center justify-center" style="background:var(--card); border:1px solid var(--border);">
+                    <span class="text-xs font-bold" id="quiz-question-counter" style="color:var(--warm);">1/5</span>
+                </div>
+            </div>
+
+            <!-- Progress Bar -->
+            <div class="w-full h-2 rounded-full mb-8" style="background:var(--card);">
+                <div id="quiz-progress" class="progress-fill h-full rounded-full" style="background: linear-gradient(90deg, var(--accent), #00cc7a); width: 0%;"></div>
+            </div>
+
+            <!-- Timer & Pertanyaan -->
+            <div class="flex flex-col items-center mb-8">
+                <!-- Timer Lingkaran -->
+                <div class="relative mb-6">
+                    <svg width="90" height="90" viewBox="0 0 100 100">
+                        <circle cx="50" cy="50" r="42" fill="none" stroke="rgba(255,255,255,0.06)" stroke-width="6"/>
+                        <circle id="timer-ring" class="timer-ring" cx="50" cy="50" r="42" fill="none" stroke="var(--accent)" stroke-width="6" stroke-linecap="round" stroke-dasharray="263.89" stroke-dashoffset="0" transform="rotate(-90 50 50)"/>
+                    </svg>
+                    <div class="absolute inset-0 flex items-center justify-center">
+                        <span id="timer-text" class="font-bold text-2xl" style="color:var(--accent);">10</span>
+                    </div>
+                </div>
+
+                <!-- Teks Pertanyaan -->
+                <div id="quiz-question" class="text-center text-lg font-semibold leading-relaxed px-2" style="min-height: 60px;">
+                    Pertanyaan muncul di sini...
+                </div>
+            </div>
+
+            <!-- Opsi Jawaban -->
+            <div id="quiz-options" class="space-y-3 mb-8">
+                <!-- Diisi oleh JavaScript -->
+            </div>
+
+            <!-- Tombol Next -->
+            <button id="quiz-next-btn" onclick="nextQuestion()" class="hidden w-full py-4 rounded-xl font-bold text-base transition-all hover:scale-[1.02] active:scale-[0.98]" style="background: linear-gradient(135deg, var(--accent), #00cc7a); color: var(--bg);">
+                Selanjutnya
+            </button>
+        </div>
+    </div>
+
+    <!-- ===================== RESULT PAGE ===================== -->
+    <div id="result-page" class="page">
+        <div class="flex-1 flex flex-col px-6 py-8 relative z-10 max-w-lg mx-auto w-full">
+            <!-- Header -->
+            <div class="flex items-center gap-4 mb-8">
+                <div class="w-11 h-11 rounded-xl flex items-center justify-center" style="background:var(--accent-dim); border:1px solid rgba(0,230,138,0.25);">
+                    <i class="fa-solid fa-flag-checkered text-sm" style="color:var(--accent);"></i>
+                </div>
+                <h2 class="font-display text-2xl" style="color:var(--accent);">Hasil Kuis</h2>
+            </div>
+
+            <!-- Skor -->
+            <div class="rounded-2xl p-6 text-center mb-6" style="background:var(--card); border:1px solid var(--border);">
+                <p class="text-sm font-semibold mb-2" style="color:var(--muted);" id="result-level-label">Level 1</p>
+                <div class="flex items-center justify-center gap-3 mb-3">
+                    <span id="result-score" class="font-display text-5xl" style="color:var(--accent);">0</span>
+                    <span class="text-2xl font-light" style="color:var(--muted);">/5</span>
+                </div>
+                <p id="result-message" class="text-sm" style="color:var(--warm);">Pertahankan!</p>
+            </div>
+
+            <!-- Detail Jawaban -->
+            <div class="flex-1 overflow-y-auto space-y-3 mb-6" id="result-details">
+                <!-- Diisi oleh JavaScript -->
+            </div>
+
+            <!-- Tombol Aksi -->
+            <div class="space-y-3">
+                <button id="result-next-level-btn" onclick="goToNextLevel()" class="w-full py-4 rounded-xl font-bold text-base transition-all hover:scale-[1.02] active:scale-[0.98]" style="background: linear-gradient(135deg, var(--accent), #00cc7a); color: var(--bg);">
+                    Lanjut ke Level 2
+                </button>
+                <button onclick="navigateTo('level-page'); renderLevelGrid();" class="w-full py-4 rounded-xl font-bold text-base transition-all hover:scale-[1.02] active:scale-[0.98]" style="background:var(--card); border:1px solid var(--border); color:var(--text);">
+                    Kembali ke Level
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===================== MODAL KONFIRMASI ===================== -->
+    <div id="confirm-modal" class="fixed inset-0 z-50 hidden items-center justify-center px-6" style="background:rgba(0,0,0,0.6); backdrop-filter:blur(6px);">
+        <div class="rounded-2xl p-6 max-w-sm w-full text-center" style="background:var(--card); border:1px solid var(--border);">
+            <div class="w-14 h-14 rounded-xl flex items-center justify-center mx-auto mb-4" style="background:var(--warm-dim);">
+                <i class="fa-solid fa-triangle-exclamation text-xl" style="color:var(--warm);"></i>
+            </div>
+            <h3 class="font-bold text-lg mb-2">Keluar dari Kuis?</h3>
+            <p class="text-sm mb-6" style="color:var(--muted);">Progres kuis saat ini akan hilang.</p>
+            <div class="flex gap-3">
+                <button onclick="closeModal()" class="flex-1 py-3 rounded-xl font-semibold text-sm transition-all hover:scale-[1.02]" style="background:var(--card-hover); border:1px solid var(--border);">Batal</button>
+                <button onclick="exitQuiz()" class="flex-1 py-3 rounded-xl font-semibold text-sm transition-all hover:scale-[1.02]" style="background:rgba(255,71,87,0.2); border:1px solid rgba(255,71,87,0.4); color:var(--wrong);">Keluar</button>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
